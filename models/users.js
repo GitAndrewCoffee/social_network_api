@@ -34,10 +34,9 @@ const userSchema = new Schema(
   );
 
   userSchema.virtual('friendsCount').get(function() {
-    return this.friends.length + 1
-    
+    return this.friends.length + 1;    
   });
   
   const User = model('User', userSchema);
   
-  module.exports = Pizza;
+  module.exports = User;
