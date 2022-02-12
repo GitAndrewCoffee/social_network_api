@@ -47,31 +47,32 @@ const userCon = {
         Users.findOneAndDelete({ _id: params.id })
             .then(dbData => res.json(dbData))
             .catch(err => res.json(err));
-    }
+    },
 
-    //Add Add Friend
-    //Add Delete Friend
+    postFriend({ params }, res) {
+        Users.findOneAndUpdate({ _id: params.id},
+            { $ADDtOsET: {friends: params.friendId} },
+            {new: true}
+        )
+        .then(dbData => {
+            if(!dbData) {
+                res.status(404).json({ message: 'invalid user id'});
+                return;
+            }
+            res.json(dbData)
+        })
+        .catch(err => res.json(err));    
+    },
+
+    deleteFriend({ params }, res) {
+        Users.findOneAndUpdate({ _id: params.id},
+            { $pull: {friends: params.friendId} },
+            {new: true}
+        )
+        .then(dbData => res.json(dbData))
+        .catch(err => res.json(err));    
+    }
 
 };
 
 module.exports = userCon;
-
-// /api/users
-
-//     GET all users
-
-//     GET a single user by its _id and populated thought and friend data
-
-//     POST a new user:
-
-// PUT to update a user by its _id
-
-// DELETE to remove user by its _id
-
-//BONUS: Remove a user's associated thoughts when deleted.
-
-// /api/users/:userId/friends/:friendId
-
-//     POST to add a new friend to a user's friend list
-
-//     DELETE to remove a friend from a user's friend list
