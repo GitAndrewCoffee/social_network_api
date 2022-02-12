@@ -16,7 +16,7 @@ router
         .delete(userCon.deleteOne);
 
 
-// /api/users/:id/:friendId
+// /api/users/:id/friends/:friendId
 router
     .route('/:id/friends/:friendId')
         .post(userCon.postFriend)

@@ -49,6 +49,9 @@ const userCon = {
             .catch(err => res.json(err));
     }
 
+    //Add Add Friend
+    //Add Delete Friend
+
 };
 
 module.exports = userCon;
