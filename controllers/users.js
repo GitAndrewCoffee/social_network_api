@@ -6,7 +6,7 @@ const userCon = {
 
     getAll(req, res) {
         Users.find({})
-            .then(dbData => res.jsaon(dbData))
+            .then(dbData => res.json(dbData))
             .catch(err => {
                 console.log(err);
                 res.sendStatus(400);
